@@ -50,6 +50,7 @@ body[data-ease="true"] {
 	display: block;
 	position: absolute;
 	transition: opacity 500ms linear;
+	z-index: 2
 }
 
 .content {
