@@ -7,7 +7,7 @@ body {
     padding: 0;
 	overflow: scroll;
 	overflow-x: hidden;
-	cursor: url(Cursors/Cursor-Arrow.png), default !important
+	cursor: url(Assets/Cursors/Cursor-Arrow.png), default !important
 }
 
 body[data-ease="true"] {
@@ -39,11 +39,17 @@ body[data-ease="true"] {
 	border-radius: 1vw;
 	border: 0.25vw solid transparent;
 	background-clip: content-box;
-	cursor: url(Cursors/Cursor-Hand.png), default !important
+	cursor: url(Assets/Cursors/Cursor-Hand.png), default !important
 }
 
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #a8bbbf;
+}
+
+.contents {
+	display: block;
+	position: absolute;
+	transition: opacity 500ms linear;
 }
 
 .content {
@@ -56,13 +62,14 @@ body[data-ease="true"] {
 }
 
 span {
-	cursor: url(Cursors/Cursor-Pointer.png), default !important
+	cursor: url(Assets/Cursors/Cursor-Pointer.png), default !important
 }
 
 #tabs {
 	background-color: rgba(0, 0, 0, 0.5);
 	position: relative;
 	display: flex;
+	flex-direction: row-reverse;
 	border-style: solid;
 	border-width: 0.25vh;
 	border-color: rgba(0, 0, 0, 0.5);
@@ -79,14 +86,14 @@ span {
 	z-index: 1;
 	position: relative;
 	display: block;
-	cursor: url(Cursors/Cursor-Hand.png), default !important
+	cursor: url(Assets/Cursors/Cursor-Hand.png), default !important
 }
 
 .tab:before, .tab:after {
   content: '';
   position: absolute;
   width: 0%;
-  height: 0.5vh;
+  height: 0.25vw;
   bottom: 0%;
   margin-top: -0.5px;
   background: black;
@@ -132,6 +139,15 @@ h3 {
 	z-index: 1;
 	top: 91vh;
 	left: -3vh;
+}
+
+#code-hour {
+	position: absolute;
+	top: -3.75vh;
+	left: 1vw;
+	font-family: 'Rubik';
+	font-size: clamp(1.5vw, 3vw, 4vw);
+	z-index: 2;
 }
 
 @keyframes gradient {
