@@ -6,7 +6,6 @@ document.onreadystatechange = () => {
 		}, 750);
 
 		var lockedindex;
-    var locked = false;
 
 		function ClearContent() {
 			Array.from(document.getElementsByClassName("contents")).forEach((item) => {
@@ -14,27 +13,39 @@ document.onreadystatechange = () => {
 				item.style.visibility = "hidden";
 			});
 		}
+		function ClearLocks() {
+			Array.from(document.getElementsByClassName("tab")).forEach((item) => {
+				item.dataset.locked = false;
+			});
+		}
 		ClearContent();
+		ClearLocks();
 
 		Array.from(document.getElementsByClassName("tab")).forEach((item, index) => {
 			item.onmousedown = () => {
-        if (lockedindex == index){
-          if (locked) {
-            document.getElementsByClassName("contents")[index].style.opacity = "0";
-            document.getElementsByClassName("contents")[index].style.visibility = "hidden";
-            locked = false;
-          } else {
-            document.getElementsByClassName("contents")[index].style.visibility = "visible";
-            document.getElementsByClassName("contents")[index].style.opacity = "1";
-            locked = true;
-          }
-        } else {
-          ClearContent();
-          document.getElementsByClassName("contents")[index].style.visibility = "visible";
-          document.getElementsByClassName("contents")[index].style.opacity = "1";
-          locked = true;
-        }
-        lockedindex = index;
+				if (lockedindex == index) {
+					if (document.getElementById("tabs").dataset.locked == "true") {
+						ClearLocks()
+						document.getElementsByClassName("contents")[index].style.opacity = "0";
+						document.getElementsByClassName("contents")[index].style.visibility = "hidden";
+						document.getElementById("tabs").dataset.locked = false;
+					} else {
+						console.log("KKHDAF");
+						ClearLocks();
+						document.getElementsByClassName("contents")[index].style.visibility = "visible";
+						document.getElementsByClassName("contents")[index].style.opacity = "1";
+						document.getElementById("tabs").dataset.locked = true;
+						item.dataset.locked = true;
+					}
+				} else {
+					ClearContent();
+					ClearLocks();
+					document.getElementsByClassName("contents")[index].style.visibility = "visible";
+					document.getElementsByClassName("contents")[index].style.opacity = "1";
+					document.getElementById("tabs").dataset.locked = true;
+					item.dataset.locked = true;
+				}
+				lockedindex = index;
 			};
 		});
 	} else {

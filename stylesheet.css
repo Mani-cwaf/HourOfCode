@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Rubik:ital,wght@0,500;1,400;1,600&display=swap');
 
 body {
-	background-color:#181818;
-    transform: scale(100vw,100vh);
-    margin: 0;
-    padding: 0;
+	background-color: #181818;
+	transform: scale(100vw, 100vh);
+	margin: 0;
+	padding: 0;
 	overflow: scroll;
 	overflow-x: hidden;
 	cursor: url(Assets/Cursors/Cursor-Arrow.png), default !important
@@ -16,7 +16,7 @@ body[data-ease="true"] {
 
 #background {
 	position: fixed;
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #23a6d5, #e73c7e, #ee7752);
+	background: #fff;
 	background-size: 400% 400%;
 	animation: gradient 10s ease infinite;
 	width: 100vw;
@@ -37,13 +37,19 @@ body[data-ease="true"] {
 ::-webkit-scrollbar-thumb {
 	background-color: #d6dee1;
 	border-radius: 1vw;
-	border: 0.25vw solid transparent;
+	border: 0.3vw solid transparent;
 	background-clip: content-box;
-	cursor: url(Assets/Cursors/Cursor-Hand.png), default !important
+	cursor: url(Assets/Cursors/Cursor-Hand.png), default !important;
+	-webkit-transition:  border 3s ease;
+	-moz-transition:  border 3s ease;
+	-o-transition:  border 3s ease;
+	-ms-transition: border 3s ease;
+	transition: border 3s ease; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #a8bbbf;
+	border: 0.25vw solid transparent;
 }
 
 .contents {
@@ -57,8 +63,10 @@ body[data-ease="true"] {
 	position: relative;
 	display: block;
 	font-family: 'Roboto';
+	font-size: clamp(1vw, 1.5vw, 3vw);
+	padding: 1.5vw;
 	height: 100vh;
-	width: 98.5vw;
+	width: 97vw;
 	z-index: 2;
 }
 
@@ -87,40 +95,73 @@ span {
 	z-index: 1;
 	position: relative;
 	display: block;
-	cursor: url(Assets/Cursors/Cursor-Hand.png), default !important
+	cursor: url(Assets/Cursors/Cursor-Hand.png), default !important;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none
 }
 
-.tab:before, .tab:after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 0.25vw;
-  bottom: 0%;
-  margin-top: -0.5px;
-  background: black;
+#tabs[data-locked="false"] .tab:before,
+#tabs[data-locked="false"] .tab:after {
+	content: '';
+	position: absolute;
+	width: 0%;
+	height: 0.25vw;
+	bottom: 0%;
+	margin-top: -0.5px;
+	background: black;
 }
-.tab:before {
+
+#tabs[data-locked="false"] .tab:before {
 	left: -2.5px;
 	padding-left: 1wh;
 }
-  
-.tab:after {
+
+#tabs[data-locked="false"] .tab:after {
 	right: 2.5px;
 	background: transparent;
 	transition: width 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
 	left: 50%;
 	transform: translate(-50%, 0);
 }
-  
-.tab:hover:before {
+
+#tabs[data-locked="false"] .tab:hover:before {
 	background: black;
 	width: 100%;
 	transition: width 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
 	left: 50%;
 	transform: translate(-50%, 0);
 }
-  
-.tab:hover:after {
+
+#tabs[data-locked="false"] .tab:hover:after {
+	background: transparent;
+	width: 100%;
+	transition: 0s;
+}
+
+.tab[data-locked="true"]:before,
+.tab:after {
+	content: '' !important;
+	position: absolute !important;
+	width: 0% !important;
+	height: 0.25vw !important;
+	bottom: 0% !important;
+	margin-top: -0.5px !important;
+	background: black !important;
+}
+
+.tab[data-locked="true"]:before {
+	background: black !important;
+	width: 100% !important;
+	transition: width 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+	left: 50% !important;
+	transform: translate(-50%, 0) !important;
+}
+
+.tab[data-locked="true"]:after {
 	background: transparent;
 	width: 100%;
 	transition: 0s;
@@ -133,31 +174,46 @@ h3 {
 #footer {
 	position: fixed;
 	font-family: 'Rubik';
-    color: #fff;
-    margin: 0.5rem;
-    padding: 1rem;
-    text-align: center;
+	color: #fff;
+	margin: 0.5rem;
+	padding: 1rem;
+	text-align: center;
 	z-index: 1;
 	top: 91vh;
 	left: -3vh;
+	z-index: 999;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none
 }
 
-#code-hour {
+#hour-of-code {
 	position: absolute;
 	top: -3.75vh;
 	left: 1vw;
 	font-family: 'Rubik';
 	font-size: clamp(1.5vw, 3vw, 4vw);
 	z-index: 2;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none
 }
 
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
 	}
+
 	50% {
 		background-position: 100% 50%;
 	}
+
 	100% {
 		background-position: 0% 50%;
 	}
