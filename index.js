@@ -1,3 +1,7 @@
+function websiteVisits(response) {
+	document.getElementById("visits").textContent = response.value;
+}
+
 document.onreadystatechange = () => {
 	if (document.readyState == "complete") {
 		setTimeout(() => {
